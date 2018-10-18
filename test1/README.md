@@ -23,33 +23,24 @@
 ```SQL
 
 SELECT d.department_name，count(e.job_id)as "部门总人数",
-
 avg(e.salary)as "平均工资"
-
 from hr.departments d,hr.employees e
-
 where d.department_id = e.department_id
-
 and d.department_name in ('IT','Sales')
-
 GROUP BY department_name;
-
 ```
 
 -查询二
 
 ```SQL
-
 SELECT d.department_name，count(e.job_id)as "部门总人数",
-
 avg(e.salary)as "平均工资"
-
-from hr.departments d,hr.employees e
-
-where d.department_id = e.department_id
-
-and d.department_name in ('IT','Sales')
-
-GROUP BY department_name;
-
+FROM hr.departments d,hr.employees e
+WHERE d.department_id = e.department_id
+GROUP BY department_name
+HAVING d.department_name in ('IT','Sales');
 ```
+-查询截图
+-查询分析：第一个查询语句group by分组  计算每一个部门，把所有的组的数据都查询过，只是没有显示。where条件限定了，多计算了除开IT，Sales的分组，所以用时更多。
+-第二个查询只计算IT和Sales组的数据，所以时间更少，更优化。
+
