@@ -51,7 +51,7 @@ HAVING d.department_name in ('IT','Sales');
 通过截图可以发现，查询语句一用时0.031s,查询语句2用时0.008s。查询语句二用时更少，更加优化。</br>
 第一个查询语句group by分组  计算每一个部门，把所有的组的数据都查询过，只是没有显示。where条件限定了，多计算了除开IT，Sales的分组，所以用时更多。</br>
 第二个查询只计算IT和Sales组的数据，所以时间更少，更优化。</br>
-- 1.5 sqldevolper优化指导
+- 1.5 sqldevolper优化指导<br>
 sqldevloper对两个查询均未给出优化指导
 
 - 2.1自己的查询语句
