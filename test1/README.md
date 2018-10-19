@@ -40,7 +40,7 @@ HAVING d.department_name in ('IT','Sales');
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/a.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/b.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/c.png)
-![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/d.png)
+![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/g.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/e.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/f.png)
 
