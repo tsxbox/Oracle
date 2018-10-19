@@ -37,9 +37,11 @@ GROUP BY department_name
 HAVING d.department_name in ('IT','Sales');
 ```
 - 1.3查询截图：
+- 1.3.1查询一截图
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/a.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/b.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/c.png)
+- 1.3.2查询二截图
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/g.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/e.png)
 ![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/f.png)
