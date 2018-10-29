@@ -51,7 +51,7 @@ SQL>exit
 
 ![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/two.png)
 
-###  2.第3步：用户hr连接到pdborcl，查询user_tsx授予它的视图myview
+###  3.第3步：用户hr连接到pdborcl，查询user_tsx授予它的视图myview
 ```sql
 $ sqlplus hr/123@pdborcl
 SQL> SELECT * FROM user_tsx.myview;
@@ -61,4 +61,38 @@ zhang
 wang
 SQL> exit
 ```
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/three.png)
+
+###  4.查看数据库的使用情况
+
+$ sqlplus system/123@pdborcl
+```sql
+SQL>SELECT tablespace_name,FILE_NAME,BYTES/1024/1024 MB,MAXBYTES/1024/1024 MAX_MB,autoextensible FROM dba_data_files  WHERE  tablespace_name='USERS';
+
+SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
+ free/1024/1024 "剩余MB",( total - free )/1024/1024 "使用MB",
+ Round(( total - free )/ total,4)* 100 "使用率%"
+ from (SELECT tablespace_name,Sum(bytes)free
+        FROM   dba_free_space group  BY tablespace_name)a,
+       (SELECT tablespace_name,Sum(bytes)total FROM dba_data_files
+        group  BY tablespace_name)b
+ where  a.tablespace_name = b.tablespace_name;
+```
+- autoextensible是显示表空间中的数据文件是否自动增加。
+- MAX_MB是指数据文件的最大容量。
+
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/three.png)
+
+### 数据库和表空间占用分析
+
+> 当全班同学的实验都做完之后，数据库pdborcl中包含了每个同学的角色和用户。
+> 所有同学的用户都使用表空间users存储表的数据。
+> 表空间中存储了很多相同名称的表mytable和视图myview，但分别属性于不同的用户，不会引起混淆。
+> 随着用户往表中插入数据，表空间的磁盘使用量会增加。
+
+
+### sql-developer 对用户的操作
+- SQL-DEVELOPER修改用户的操作界面：
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/three.png)
+- sqldeveloper授权对象的操作界面：
 ![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/three.png)
