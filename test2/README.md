@@ -81,7 +81,7 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
 - autoextensible是显示表空间中的数据文件是否自动增加。
 - MAX_MB是指数据文件的最大容量。
 
-![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/three.png)
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/five.png)
 
 ### 数据库和表空间占用分析
 
@@ -98,3 +98,7 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
 ![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/nine.png)
 
 ### 实验总结
+>本次实验在pdborcl插接式数据中创建一个新的本地角色con_tsx_view，该角色包含connect和resource角色，同时也包含CREATE VIEW权限，这样任何拥有con_res_view的用户就同时拥有这三种权限。
+>创建角色之后，再创建用户user_tsx，给用户分配表空间，设置限额为50M，授予con_tsx_view角色。
+> 最后测试：用新用户user-tsx连接数据库、创建表，插入数据，创建视图，查询表和视图的数据。
+>使我们在本次实验中掌握了用户管理功能，并掌握管理角色、权根、用户的能力，并在用户之间共享对象。让我们在本次实验中受益匪浅。
