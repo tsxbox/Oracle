@@ -93,6 +93,8 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
 
 ### sql-developer 对用户的操作
 - SQL-DEVELOPER修改用户的操作界面：
-![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/three.png)
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/six.png)
 - sqldeveloper授权对象的操作界面：
-![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/three.png)
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test2/nine.png)
+
+### 实验总结
