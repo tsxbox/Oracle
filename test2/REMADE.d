@@ -8,4 +8,57 @@ Oracle有一个开发者角色resource，可以创建表、过程、触发器等
 
 ## 实验步骤
 
-###  1.- 第1步：以system登录到pdborcl，创建角色con_res_view和用户new_user，并授权和分配空间：
+###  1.第1步：以system登录到pdborcl，创建角色con_tsx_view和用户user_tsx，并授权和分配空间：
+
+```sql
+$ sqlplus system/123@pdborcl
+SQL> CREATE ROLE con_tsx_view;
+Role created.
+SQL> GRANT connect,resource,CREATE VIEW TO con_tsx_view;
+Grant succeeded.
+SQL> CREATE USER user_tsx IDENTIFIED BY 123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
+User created.
+SQL> ALTER USER new_user QUOTA 50M ON users;
+User altered.
+SQL> GRANT con_res_view TO new_user;
+Grant succeeded.
+SQL> exit
+```
+![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/one.png)
+
+###  2.第2步：新用户user-tsx连接到 pdborcl，创建表mytable和视图myview，插入数据，最后将myview的SELECT对象权限授予hr用户。
+```sql
+$ sqlplus /123@pdborcl
+SQL> show user;
+USER is "USER_TSX"
+SQL> CREATE TABLE mytable (id number,name varchar(50));
+Table created.
+SQL> INSERT INTO mytable(id,name)VALUES(1,'zhang');
+1 row created.
+SQL> INSERT INTO mytable(id,name)VALUES (2,'wang');
+1 row created.
+SQL> CREATE VIEW myview AS SELECT name FROM mytable;
+View created.
+SQL> SELECT * FROM myview;
+NAME
+--------------------------------------------------
+zhang
+wang
+SQL> GRANT SELECT ON myview TO hr;
+Grant succeeded.
+SQL>exit
+```
+
+![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/two.png)
+
+###  2.第3步：用户hr连接到pdborcl，查询user_tsx授予它的视图myview
+```sql
+$ sqlplus hr/123@pdborcl
+SQL> SELECT * FROM user_tsx.myview;
+NAME
+--------------------------------------------------
+zhang
+wang
+SQL> exit
+```
+![IMAGE](https://raw.githubusercontent.com/tsxbox/Oracle/master/three.png)
