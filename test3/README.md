@@ -13,7 +13,7 @@
 - 进行分区与不分区的对比实验。
 
 ## 实验步骤
-- 1、创建orders订单表
+### 1、创建orders订单表
 -   SQL语句：
 ```sql
 SQL> CREATE TABLE orders 
@@ -81,7 +81,7 @@ PCTFREE 10
 ) 
 );
 ```
-- 2、创建订单详表(order_details)
+### 2、创建订单详表(order_details)
 -   SQL语句：
 ```sql
 SQL> CREATE TABLE order_details 
@@ -113,14 +113,12 @@ TABLESPACE USERS02
 NOCOMPRESS NO INMEMORY  
 );
 ```
-- 3、分配权限
-- 4、插入数据、联合查询
-- 5、对比试验
+### 3、分配权限
+### 4、插入数据、联合查询
+### 5、对比试验
 
 ## 实验分析
-
+两张表均有上万条数据，从表ORDER_DETAILS跟主表ORDERS建立了主外键，orders表按照时间分成三个表空间，通过分区和不分区实验结果对比，分区表查 询的资源占比明显高出很多，查询速度快了不少。 通过分区， 查询时就不用扫描整张表，而是一块区域一块区域的去查找，这样就会快不少。
 
 ## 查看数据库的使用情况
-
-## 实验总结
 
