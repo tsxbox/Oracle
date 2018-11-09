@@ -118,6 +118,7 @@ TABLESPACE USERS03
 ```
 ### 3、分配权限
 
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test3/.png)
 ### 4、插入数据、联合查询
 ### 5、对比试验
 
