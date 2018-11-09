@@ -120,6 +120,52 @@ TABLESPACE USERS03
 
 ![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test3/.png)
 ### 4、插入数据、联合查询
+--------
+##### 向两个表中各自插入10000条数据：
+    begin
+    for i in 1..3000
+    loop
+    insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'小黑',12345,to_date('2017-02-14','yyyy-mm-dd'),i,i);
+    end loop;
+    commit;
+    
+    for i in 3001..6000
+    loop
+     insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'小米',12345,to_date('2015-02-14','yyyy-mm-dd'),i,i);
+    end loop;
+    commit;
+    
+    for i in 6001..10000
+    loop
+     insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'小虎',12345,to_date('2016-02-14','yyyy-mm-dd'),i,i);
+    end loop;
+    commit;
+    
+    for j in 1..3000
+    loop
+    insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',20,100);
+    end loop;
+    commit;
+    
+    for j in 3001..6000
+    loop
+    insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',30,200);
+    end loop;
+    commit;
+    
+        for j in 6001..10000
+    loop
+    insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',40,300);
+    end loop;
+    commit;
+    end;  
+    
+ ##### 联合查询语句：
+    SELECT
+    *
+    FROM orders,order_details  Where orders.order_id = order_details.order_id AND
+    orders.order_date>=to_date('2016-02-14','yyyy-mm-dd')
+--------  
 ### 5、对比试验
 
 ## 实验分析
