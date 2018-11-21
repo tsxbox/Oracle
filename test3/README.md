@@ -151,43 +151,32 @@ BUFFER_POOL DEFAULT
 ### 4、插入数据、联合查询
 --------
 ##### 向两个表中各自插入10000条数据：
-    begin
-    for i in 1..3000
-    loop
-    insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'小黑',12345,to_date('2017-02-14','yyyy-mm-dd'),i,i);
-    end loop;
-    commit;
-    
-    for i in 3001..6000
-    loop
-     insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'小米',12345,to_date('2015-02-14','yyyy-mm-dd'),i,i);
-    end loop;
-    commit;
-    
-    for i in 6001..10000
-    loop
-     insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'小虎',12345,to_date('2016-02-14','yyyy-mm-dd'),i,i);
-    end loop;
-    commit;
-    
-    for j in 1..3000
-    loop
-    insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',20,100);
-    end loop;
-    commit;
-    
-    for j in 3001..6000
-    loop
-    insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',30,200);
-    end loop;
-    commit;
-    
-        for j in 6001..10000
-    loop
-    insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',40,300);
-    end loop;
-    commit;
-    end;  
+BEGIN
+       FOR i IN 1..3000 LOOP
+       insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'黎明',12345,to_date('2017-12-14','yyyy-mm-dd'),i,i);
+       END LOOP;
+       COMMIT;
+       FOR i IN 3001..6000 LOOP
+       insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'李晓',12345,to_date('2015-02-14','yyyy-mm-dd'),i,i);
+       END LOOP;
+       COMMIT;
+       FOR i IN 6001..10000 LOOP
+       insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'张浩',12345,to_date('2016-6-14','yyyy-mm-dd'),i,i);
+       END LOOP;
+       COMMIT;
+       FOR j IN 1..3000 LOOP
+       insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',10,100);
+       END LOOP;
+       COMMIT;
+       FOR j IN 3001..6000 LOOP
+       insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',20,100);
+       END LOOP;
+       COMMIT;
+       FOR j IN 6001..10000 LOOP
+       insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',30,100);
+       END LOOP;
+       COMMIT;     
+END; 
     
  ##### 联合查询语句：
     SELECT
