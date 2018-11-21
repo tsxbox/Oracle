@@ -151,6 +151,7 @@ BUFFER_POOL DEFAULT
 ### 4、插入数据、联合查询
 --------
 ##### 向两个表中各自插入10000条数据：
+```sql
 BEGIN
        FOR i IN 1..3000 LOOP
        insert into ORDERS(ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT) VALUES(i,'黎明',12345,to_date('2017-12-14','yyyy-mm-dd'),i,i);
@@ -176,8 +177,8 @@ BEGIN
        insert into order_details(ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) VALUES(j,j,'j',30,100);
        END LOOP;
        COMMIT;     
-END; 
-    
+END;
+```   
  ##### 联合查询语句：
     SELECT
     *
