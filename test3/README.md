@@ -200,4 +200,19 @@ BUFFER_POOL DEFAULT
 两张表均有上万条数据，从表ORDER_DETAILS跟主表ORDERS建立了主外键，orders表按照时间分成三个表空间，通过分区和不分区实验结果对比，分区表查 询的资源占比明显高出很多，查询速度快了不少。 通过分区， 查询时就不用扫描整张表，而是一块区域一块区域的去查找，这样就会快不少。
 
 ## 查看数据库的使用情况
+$ sqlplus system/123@pdborcl
+```sql
+SQL>SELECT tablespace_name,FILE_NAME,BYTES/1024/1024 MB,MAXBYTES/1024/1024 MAX_MB,autoextensible FROM dba_data_files  WHERE  tablespace_name='USERS';
+
+SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
+ free/1024/1024 "剩余MB",( total - free )/1024/1024 "使用MB",
+ Round(( total - free )/ total,4)* 100 "使用率%"
+ from (SELECT tablespace_name,Sum(bytes)free
+        FROM   dba_free_space group  BY tablespace_name)a,
+       (SELECT tablespace_name,Sum(bytes)total FROM dba_data_files
+        group  BY tablespace_name)b
+ where  a.tablespace_name = b.tablespace_name;
+```
+- autoextensible是显示表空间中的数据文件是否自动增加。
+- MAX_MB是指数据文件的最大容量。
 
