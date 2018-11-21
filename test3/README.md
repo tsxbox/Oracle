@@ -146,8 +146,8 @@ BUFFER_POOL DEFAULT
 ```
 ### 3、分配权限
 
-![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test3/quanxianone.jpg)
-![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test3/quanxiantwo.jpg)
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test3/quanxianone.png)
+![IMAGE](https://github.com/tsxbox/Oracle/blob/master/test3/quanxiantwo.png)
 ### 4、插入数据、联合查询
 --------
 ##### 向两个表中各自插入10000条数据：
