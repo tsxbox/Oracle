@@ -183,7 +183,7 @@ END;
     SELECT
     *
     FROM orders,order_details  Where orders.order_id = order_details.order_id AND
-    orders.order_date>=to_date('2016-02-14','yyyy-mm-dd')
+    orders.order_date>=to_date('2016-06-14','yyyy-mm-dd')
 --------  
 
 ## 实验分析
